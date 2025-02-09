@@ -1,0 +1,25 @@
+[
+    {
+      "id": 1,
+      "username": "Alex",
+      "profilePic": "/images/beno.svg",
+      "action": "sent you a message",
+      "isRead":false
+    },
+    {
+      "id": 2,
+      "username": "Alice",
+      "profilePic":"/images/eko.svg",
+      "action": "Invited you to gorup",
+      "isRead":false,
+      "groupName": "React Developers"
+    },
+    {
+      "id": 3,
+      "username": "Charlie",
+      "profilePic": "/images/daniel.svg",
+      "action": "notified you about an update",
+      "isRead":false
+    }
+  ]
+  

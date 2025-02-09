@@ -1,0 +1,26 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+.not-div {
+    border: 1px solid rgb(195, 0, 255);
+    padding: 20px;
+    width: 400px;
+    height: 100px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.circle {
+    background-color: rgb(255, 18, 18);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+img {
+    width: 40px;
+    height: 40px;
+}
