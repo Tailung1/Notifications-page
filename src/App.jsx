@@ -4,16 +4,36 @@ import data from "./data.json"
 
  function App() {
    const [notifications,setNotifications]=useState(data);
+   const [counter, setCounter]=useState(notifications.length)
+
+
+    const changeStatus=(id)=> {
+        const updatedNotifications=notifications.map((notification)=> {
+            if(notification.id === id) {
+                return {...notification,isRead:true}
+            }
+            return notification
+        })
+        setNotifications(updatedNotifications)
+    }
+
+    const markAllAsRead=()=>{
+        const allRead=notifications.map((noti)=> {
+            return {...noti,isRead:true}
+        })
+        setNotifications(allRead)
+    }
+
   return (
     <>
         <section>
-            <h2>Notifications 3</h2>
-            <p>Mark all as read</p>
+            <h2>Notifications {counter}</h2>
+            <p style={{cursor:"pointer"}} onClick={markAllAsRead}>Mark all as read</p>
         </section>
         
         <main>
-        {data.map((notification)=> (
-            <div key={notification.id} className='not-div'
+        {notifications.map((notification)=> (
+            <div onClick={()=>changeStatus(notification.id)}  key={notification.id} className='not-div'
             style={!notification.isRead?{backgroundColor:"green"}:null}>
                 <img src={notification.profilePic} alt="" />
                 <span style={{color:"pink"}}>{notification.username}</span>
