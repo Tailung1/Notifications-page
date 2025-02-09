@@ -4,9 +4,7 @@ import data from "./data.json"
 
  function App() {
    const [notifications,setNotifications]=useState(data);
-   const [counter, setCounter]=useState(notifications.filter(noti =>
-    !noti.isRead).length)
-
+   const counter = notifications.filter(noti =>!noti.isRead).length
 
     const changeStatus=(id)=> {
         const updatedNotifications=notifications.map((notification)=> {
@@ -16,12 +14,6 @@ import data from "./data.json"
             return notification
         })
         setNotifications(updatedNotifications)
-        const clickedNotifications=notifications.find(noti =>
-            noti.id === id)
-            if(!clickedNotifications.isRead) {
-                setCounter(counter-1)
-            }
-          
     }
 
     const markAllAsRead=()=>{
@@ -29,7 +21,6 @@ import data from "./data.json"
             return {...noti,isRead:true}
         })
         setNotifications(allRead)
-        setCounter(0)
     }
 
   return (
