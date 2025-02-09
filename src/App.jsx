@@ -1,49 +1,24 @@
 import { useState } from 'react'
 import './App.css'
 import data from "./data.json"
+import NotiBody from './components/notiBody'
+import Starter from './components/starter'
 
  function App() {
-   const [notifications,setNotifications]=useState(data);
-   const counter = notifications.filter(noti =>!noti.isRead).length
-
-    const changeStatus=(id)=> {
-        const updatedNotifications=notifications.map((notification)=> {
-            if(notification.id === id) {
-                return {...notification,isRead:true}
-            }
-            return notification
-        })
-        setNotifications(updatedNotifications)
-    }
-
-    const markAllAsRead=()=>{
-        const allRead=notifications.map((noti)=> {
-            return {...noti,isRead:true}
-        })
-        setNotifications(allRead)
-    }
-
+    const [notifications,setNotifications]=useState(data);
   return (
     <>
-        <section>
-            <h2>Notifications {counter}</h2>
-            <p style={{cursor:"pointer"}} onClick={markAllAsRead}>Mark all as read</p>
-        </section>
-        
-        <main>
-        {notifications.map((notification)=> (
-            <div onClick={()=>changeStatus(notification.id)}  key={notification.id} className='not-div'
-            style={!notification.isRead?{backgroundColor:"green"}:null}>
-                <img src={notification.profilePic} alt="" />
-                <span style={{color:"pink"}}>{notification.username}</span>
-                <span>{notification.action}</span>
-                <span>{notification.isRead}</span>
-                {notification.groupName?
-                <p style={{color:'blue'}}>{notification.groupName}</p>: null}
-                {!notification.isRead? <div className='circle'> </div>:null}
-          </div>
-        ))}
-        </main>
+    <Starter notifications={notifications}
+        setNotifications={setNotifications} />
+
+    <main>
+    {notifications.map((notification)=> (
+    <NotiBody key={notification.id}
+        notification={notification}
+        notifications={notifications} 
+        setNotifications={setNotifications}/>
+    ))}
+    </main>
     </>
   )
 }
